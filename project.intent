@@ -1,0 +1,18 @@
+Intent V2 - offline VS Code support for a declarative project.intent kept alongside source code
+implementation = ["TypeScript", "Bun"]
+editor = "Visual Studio Code"
+protocol = "Language Server Protocol"
+
+editing {
+  document edits ~> language server ~> structural diagnostics and semantic highlighting
+  scoped terms -> completion, definitions, references and rename
+  document structure -> outline, workspace symbols and folding
+  formatter: preserve prose, literals and bullet parentage
+  likely typo -> versioned quick fix
+  existing file mentions -> document links
+}
+
+delivery {
+  Bun -> Node bundles -> VS Code extension
+  VS Code: start the bundled server over stdio
+}

@@ -1,0 +1,332 @@
+{
+  "name": "intent-v2",
+  "displayName": "Intent V2",
+  "description": "Offline language support for declarative Intent project files.",
+  "version": "2.0.0",
+  "publisher": "intent-v2",
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": false
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "intent",
+        "aliases": [
+          "Intent",
+          "intent"
+        ],
+        "extensions": [
+          ".intent"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "intent",
+        "scopeName": "source.intent",
+        "path": "./syntaxes/intent.tmLanguage.json"
+      }
+    ],
+    "semanticTokenTypes": [
+      {
+        "id": "intentTerm",
+        "superType": "type",
+        "description": "An Intent phrase, in a definition, binding, refinement, flow or prose reference."
+      },
+      {
+        "id": "intentActionText",
+        "description": "Action description prose after a colon."
+      },
+      {
+        "id": "intentClarification",
+        "description": "Muted clarification prose inside parentheses."
+      }
+    ],
+    "semanticTokenScopes": [
+      {
+        "language": "intent",
+        "scopes": {
+          "intentTerm": [
+            "entity.name.type.intent"
+          ],
+          "intentTerm.declaration": [
+            "entity.name.type.intent"
+          ],
+          "intentTerm.definition": [
+            "entity.name.type.definition.intent"
+          ],
+          "intentTerm.binding": [
+            "entity.name.type.binding.intent"
+          ],
+          "intentTerm.action": [
+            "entity.name.type.action.intent"
+          ],
+          "intentTerm.refinement": [
+            "entity.name.type.refinement.intent"
+          ],
+          "intentTerm.inferred": [
+            "entity.name.type.inferred.intent"
+          ],
+          "intentActionText": [
+            "meta.action.description.intent"
+          ],
+          "intentClarification": [
+            "meta.clarification.text.intent"
+          ],
+          "intentTerm.clarification": [
+            "entity.name.type.clarification.intent"
+          ]
+        }
+      }
+    ],
+    "semanticTokenModifiers": [
+      {
+        "id": "binding",
+        "description": "The head of an Intent assignment."
+      },
+      {
+        "id": "action",
+        "description": "The head of an Intent action, including a flow stage."
+      },
+      {
+        "id": "refinement",
+        "description": "The term before an Intent refinement block."
+      },
+      {
+        "id": "inferred",
+        "description": "An accepted term without an explicit visible definition or binding."
+      },
+      {
+        "id": "clarification",
+        "description": "A term reference inside secondary clarification text; resolution is unchanged."
+      }
+    ],
+    "configurationDefaults": {
+      "editor.semanticTokenColorCustomizations": {
+        "rules": {
+          "intentTerm:intent": {
+            "foreground": "#9CDCFE",
+            "italic": false
+          },
+          "intentTerm.definition:intent": {
+            "foreground": "#4EC9C4",
+            "italic": false
+          },
+          "intentTerm.refinement:intent": {
+            "foreground": "#4EC9C4",
+            "italic": false
+          },
+          "intentTerm.binding:intent": {
+            "foreground": "#9CDCFE",
+            "italic": false
+          },
+          "intentTerm.action:intent": {
+            "foreground": "#C4B5E5",
+            "italic": false
+          },
+          "intentTerm.inferred:intent": {
+            "foreground": "#D6A06B",
+            "italic": false
+          },
+          "intentTerm.action.inferred:intent": {
+            "foreground": "#D6A06B",
+            "italic": false
+          },
+          "intentActionText:intent": {
+            "foreground": "#D8D8BE",
+            "italic": true
+          },
+          "intentClarification:intent": "#96999F",
+          "intentTerm.clarification:intent": {
+            "foreground": "#8FA8B5",
+            "italic": false
+          },
+          "intentTerm.inferred.clarification:intent": {
+            "foreground": "#B0A18C",
+            "italic": false
+          }
+        },
+        "[*Light*]": {
+          "rules": {
+            "intentTerm:intent": {
+              "foreground": "#1763AA",
+              "italic": false
+            },
+            "intentTerm.definition:intent": {
+              "foreground": "#087F7A",
+              "italic": false
+            },
+            "intentTerm.refinement:intent": {
+              "foreground": "#087F7A",
+              "italic": false
+            },
+            "intentTerm.binding:intent": {
+              "foreground": "#1763AA",
+              "italic": false
+            },
+            "intentTerm.action:intent": {
+              "foreground": "#665A9E",
+              "italic": false
+            },
+            "intentTerm.inferred:intent": {
+              "foreground": "#985323",
+              "italic": false
+            },
+            "intentTerm.action.inferred:intent": {
+              "foreground": "#985323",
+              "italic": false
+            },
+            "intentActionText:intent": {
+              "foreground": "#756414",
+              "italic": true
+            },
+            "intentClarification:intent": "#6F747C",
+            "intentTerm.clarification:intent": {
+              "foreground": "#536F7F",
+              "italic": false
+            },
+            "intentTerm.inferred.clarification:intent": {
+              "foreground": "#7E6F50",
+              "italic": false
+            }
+          }
+        }
+      },
+      "editor.tokenColorCustomizations": {
+        "textMateRules": [
+          {
+            "scope": [
+              "entity.name.type.definition.intent",
+              "entity.name.type.refinement.intent"
+            ],
+            "settings": {
+              "foreground": "#4EC9C4",
+              "fontStyle": ""
+            }
+          },
+          {
+            "scope": "entity.name.type.binding.intent",
+            "settings": {
+              "foreground": "#9CDCFE",
+              "fontStyle": ""
+            }
+          },
+          {
+            "scope": "entity.name.type.action.intent",
+            "settings": {
+              "foreground": "#C4B5E5",
+              "fontStyle": ""
+            }
+          },
+          {
+            "scope": "meta.action.description.intent",
+            "settings": {
+              "foreground": "#D8D8BE",
+              "fontStyle": "italic"
+            }
+          },
+          {
+            "scope": "meta.clarification.text.intent",
+            "settings": {
+              "foreground": "#96999F"
+            }
+          },
+          {
+            "scope": "entity.name.type.inferred.intent",
+            "settings": {
+              "foreground": "#D6A06B",
+              "fontStyle": ""
+            }
+          }
+        ],
+        "[*Light*]": {
+          "textMateRules": [
+            {
+              "scope": [
+                "entity.name.type.definition.intent",
+                "entity.name.type.refinement.intent"
+              ],
+              "settings": {
+                "foreground": "#087F7A",
+                "fontStyle": ""
+              }
+            },
+            {
+              "scope": "entity.name.type.binding.intent",
+              "settings": {
+                "foreground": "#1763AA",
+                "fontStyle": ""
+              }
+            },
+            {
+              "scope": "entity.name.type.action.intent",
+              "settings": {
+                "foreground": "#665A9E",
+                "fontStyle": ""
+              }
+            },
+            {
+              "scope": "meta.action.description.intent",
+              "settings": {
+                "foreground": "#756414",
+                "fontStyle": "italic"
+              }
+            },
+            {
+              "scope": "meta.clarification.text.intent",
+              "settings": {
+                "foreground": "#6F747C"
+              }
+            },
+            {
+              "scope": "entity.name.type.inferred.intent",
+              "settings": {
+                "foreground": "#985323",
+                "fontStyle": ""
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "main": "./dist/extension.cjs",
+  "activationEvents": [
+    "onLanguage:intent"
+  ],
+  "files": [
+    "dist/*.cjs",
+    "syntaxes/*.json",
+    "language-configuration.json",
+    "LANGUAGE.md",
+    "project.intent",
+    "skills/intent/SKILL.md"
+  ],
+  "scripts": {
+    "build": "bun build src/extension.ts src/server.ts --target=node --format=cjs --entry-naming=[name].cjs --outdir=dist --external=vscode",
+    "check": "tsc --noEmit",
+    "package": "bun run build && vsce package --no-dependencies --allow-missing-repository --skip-license --no-rewrite-relative-links"
+  },
+  "dependencies": {
+    "vscode-languageclient": "9.0.1",
+    "vscode-languageserver": "9.0.1",
+    "vscode-languageserver-textdocument": "1.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.9",
+    "@types/vscode": "1.85.0",
+    "typescript": "5.9.3",
+    "@vscode/vsce": "4.1.0"
+  }
+}

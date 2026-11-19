@@ -1,0 +1,208 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Intent",
+  "scopeName": "source.intent",
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "begin": "^\\s*(?![-\\s])([^#=:\\[\\]{}()\"\\r\\n]+?)(\\s+-\\s+)",
+      "end": "$",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.type.definition.intent"
+        },
+        "2": {
+          "name": "keyword.control.definition.intent"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#clarification"
+        }
+      ]
+    },
+    {
+      "match": "^\\s*(?![-\\s])([^#=:\\[\\]{}()\"\\r\\n]+?)\\s*(=)(?!=)",
+      "captures": {
+        "1": {
+          "name": "entity.name.type.binding.intent"
+        },
+        "2": {
+          "name": "keyword.control.assignment.intent"
+        }
+      }
+    },
+    {
+      "match": "^\\s*(?![-\\s])([^#=:\\[\\]{}()\"\\r\\n]+?)\\s*(?=\\{)",
+      "captures": {
+        "1": {
+          "name": "entity.name.type.refinement.intent"
+        }
+      }
+    },
+    {
+      "match": "^\\s*(-)(?=\\s)",
+      "captures": {
+        "1": {
+          "name": "keyword.control.option.intent"
+        }
+      }
+    },
+    {
+      "include": "#value"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.number-sign.intent",
+      "match": "^\\s*(#)(?=\\s|$).*$"
+    },
+    "value": {
+      "patterns": [
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#clarification"
+        },
+        {
+          "name": "meta.list.intent",
+          "begin": "\\[",
+          "end": "\\]|$",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.brackets.begin.intent"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.brackets.end.intent"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#value"
+            },
+            {
+              "name": "entity.name.type.inferred.intent",
+              "match": "[\\p{L}_][\\p{L}\\p{N}_ ./\\x{2019}\\x{0027}+-]*"
+            }
+          ]
+        },
+        {
+          "name": "keyword.control.flow.intent",
+          "match": "~>|->"
+        },
+        {
+          "begin": "([A-Za-z_][\\w .,/\\'-]*?)(:)(?!/)",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.type.action.intent"
+            },
+            "2": {
+              "name": "keyword.control.action.intent"
+            }
+          },
+          "end": "(?=->|~>|$)",
+          "contentName": "meta.action.description.intent",
+          "patterns": [
+            {
+              "include": "#string"
+            },
+            {
+              "include": "#clarification"
+            },
+            {
+              "name": "meta.list.intent",
+              "begin": "\\[",
+              "end": "\\]|$",
+              "beginCaptures": {
+                "0": {
+                  "name": "punctuation.section.brackets.begin.intent"
+                }
+              },
+              "endCaptures": {
+                "0": {
+                  "name": "punctuation.section.brackets.end.intent"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "#value"
+                },
+                {
+                  "name": "entity.name.type.inferred.intent",
+                  "match": "[\\p{L}_][\\p{L}\\p{N}_ ./\\x{2019}\\x{0027}+-]*"
+                }
+              ]
+            },
+            {
+              "name": "constant.numeric.intent",
+              "match": "(?<![\\w.])\\d+(?:\\.\\d+)?(?:\\s*(?:tokens|ms|s|GB|MB|KB|kHz|Hz|K|B|M|%))?(?!\\w)"
+            }
+          ]
+        },
+        {
+          "name": "constant.other.color.rgb-value.intent",
+          "match": "(?<![\\w#])#[0-9A-Fa-f]{6}\\b"
+        },
+        {
+          "name": "constant.numeric.intent",
+          "match": "(?<![\\w.])\\d+(?:\\.\\d+)?(?:\\s*(?:tokens|ms|s|GB|MB|KB|kHz|Hz|K|B|M|%))?(?!\\w)"
+        },
+        {
+          "name": "punctuation.section.braces.intent",
+          "match": "[{}]"
+        },
+        {
+          "name": "punctuation.separator.intent",
+          "match": "[,]"
+        }
+      ]
+    },
+    "string": {
+      "name": "string.quoted.double.intent",
+      "begin": "\"",
+      "end": "\"|$",
+      "patterns": [
+        {
+          "name": "constant.character.escape.intent",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "clarification": {
+      "name": "meta.clarification.intent",
+      "begin": "\\(",
+      "end": "\\)|$",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.parens.begin.intent"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.parens.end.intent"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#clarification"
+        },
+        {
+          "name": "constant.numeric.intent",
+          "match": "(?<![\\w.])\\d+(?:\\.\\d+)?(?:\\s*(?:tokens|ms|s|GB|MB|KB|kHz|Hz|K|B|M|%))?(?!\\w)"
+        }
+      ],
+      "contentName": "meta.clarification.text.intent"
+    }
+  }
+}
