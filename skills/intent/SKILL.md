@@ -22,3 +22,5 @@ Follow the user's emphasis as it evolves. Keep the behavior, tradeoffs, and cons
 **Intent → code.** Update desired behavior from the request. Check for conflicts and discuss consequential ambiguity. Implement and verify against Intent.
 
 **Code → intent.** Reconcile both diffs against their common base. Record approved decisions that change what matters to the user. Keep unmet requirements visible.
+
+See the [Intent repository](https://github.com/Azarattum/Intent) and fetch the [language syntax guide](https://raw.githubusercontent.com/Azarattum/Intent/main/LANGUAGE.md) when you need syntax details.
