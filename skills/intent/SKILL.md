@@ -1,12 +1,12 @@
 ---
 name: intent
-description: Design and maintain systems with a declarative project.intent.
+description: Design and maintain systems with a concise, declarative project.intent.
 ---
 
-Intent is a declarative notation for desired system behavior, architecture, and constraints. Keep the spec in root `project.intent` alongside code.
+Intent is a human-readable description of the system you want. Keep it in root `project.intent` beside the code. Repeated prompts against current code scatter decisions across chats and diffs. Editing Intent keeps them in view.
 
-Repeated prompts to change current code scatter design decisions across prompts and diffs. Edit the spec to reason about the whole design without reconstructing those decisions.
+Write short, plain English. Use Intent syntax where it reads better. Follow the user's emphasis and priorities as they evolve. Keep the behavior, tradeoffs, and constraints they care about. Skip routine implementation details, exhaustive inventories, and filler.
 
-Intent → code: Translate requests into desired behavior in phrase-and-flow prose. Lint for contradictions, omissions, and needless commitments. Discuss consequential ambiguity before implementing. Derive acceptance checks from intent and verify against code.
+**Intent → code.** Update desired behavior from the request. Check for conflicts and discuss consequential ambiguity. Implement and verify against Intent.
 
-Code → intent: Reconcile both diffs against their common base. Record approved behavior, architecture, and technology changes in the same change. Keep unmet requirements visible as gaps.
+**Code → intent.** Reconcile both diffs against their common base. Record approved decisions that change what matters to the user. Keep unmet requirements visible.

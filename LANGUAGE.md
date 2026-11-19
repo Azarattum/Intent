@@ -1,6 +1,6 @@
 # Intent syntax
 
-Intent is a line-oriented notation for desired behavior and architecture. Names can contain multiple words, and unfamiliar names are inferred. There are no reserved keywords.
+Write `project.intent` in plain English. Use the line-oriented forms below where they make the desired behavior or architecture easier to read. Names can contain multiple words, and unfamiliar names are inferred. There are no reserved keywords.
 
 | Form | Meaning |
 | --- | --- |
