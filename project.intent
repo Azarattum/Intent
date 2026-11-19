@@ -5,6 +5,8 @@ protocol = "Language Server Protocol"
 
 editing {
   document edits ~> language server ~> structural diagnostics and semantic highlighting
+  parsed document -> shared term resolution within that document
+  workspace discovery -> workspace symbols and quoted literal suggestions
   scoped terms -> completion, definitions, references and rename
   document structure -> outline, workspace symbols and folding
   formatter: preserve prose, literals and bullet parentage

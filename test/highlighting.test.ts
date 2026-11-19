@@ -1,11 +1,12 @@
+import { occurrences } from "../src/terms.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
-import { parse, index, offset } from "../src/frontend.ts";
+import { parse, offset } from "../src/frontend.ts";
 import { semanticLegend, semanticTokens } from "../src/highlighting.ts";
 
-function decoded(doc, idx = index([doc])) {
-  const { data } = semanticTokens(doc, idx);
+function decoded(doc) {
+  const { data } = semanticTokens(doc);
   let line = 0,
     character = 0;
   const spans = [];
@@ -76,13 +77,12 @@ test("semantic classifications have explicit theme fallbacks matching lexical sc
   assert(!Object.hasOwn(mappings, "intentOperator"));
 });
 
-test("another document does not contribute prose highlighting", () => {
+test("ordinary prose does not become a term", () => {
   const doc = parse(
     "overview - the language server handles editing\n",
     "memory:project",
   );
-  const other = parse("language server - editor tooling\n", "memory:other");
-  const spans = decoded(doc, index([doc, other]));
+  const spans = decoded(doc);
   assert.deepEqual(
     spans.map((span) => span.text),
     ["overview"],
@@ -266,8 +266,7 @@ test("clarification term references keep resolution but receive secondary contex
   const doc = parse(
     "context - shared\nsource -> unknown term\nsource (context and unknown term)\n",
   );
-  const idx = index([doc]),
-    spans = decoded(doc, idx);
+  const spans = decoded(doc);
   const known = spans.find(
     (s) => s.text === "context" && s.modifiers.includes("clarification"),
   );
@@ -278,7 +277,7 @@ test("clarification term references keep resolution but receive secondary contex
   assert(!known.modifiers.includes("inferred"));
   assert(inferred?.modifiers.includes("inferred"));
   assert(
-    idx.occurrences.some(
+    occurrences(doc).some(
       (o) => o.start === known.start && o.candidates.some((t) => t.declared),
     ),
   );
