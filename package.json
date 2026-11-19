@@ -1,9 +1,9 @@
 {
-  "name": "intent-v2",
-  "displayName": "Intent V2",
-  "description": "Offline language support for declarative Intent project files.",
+  "name": "intent",
+  "displayName": "Intent",
+  "description": "VS Code support for Intent project files.",
   "version": "2.0.0",
-  "publisher": "intent-v2",
+  "publisher": "intent",
   "license": "UNLICENSED",
   "engines": {
     "vscode": "^1.85.0"

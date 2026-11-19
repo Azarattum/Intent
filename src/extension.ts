@@ -5,8 +5,8 @@ import { DocumentLinkRequest } from "vscode-languageclient";
 export async function activate(context: vscode.ExtensionContext) {
   const watcher = vscode.workspace.createFileSystemWatcher("**/*.intent");
   const client = new LanguageClient(
-    "intent-v2",
-    "Intent V2",
+    "intent",
+    "Intent",
     {
       module: context.asAbsolutePath("dist/server.cjs"),
       transport: TransportKind.stdio,

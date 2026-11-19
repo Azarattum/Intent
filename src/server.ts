@@ -74,7 +74,7 @@ connection.onInitialize((params) => {
         workspaceFolders: { supported: true, changeNotifications: true },
       },
     },
-    serverInfo: { name: "Intent", version: "2.0.0" },
+    serverInfo: { name: "Intent" },
   };
 });
 
