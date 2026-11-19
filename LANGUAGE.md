@@ -1,6 +1,6 @@
 # Intent syntax
 
-Write `project.intent` in plain English. Use the line-oriented forms below where they make the desired behavior or architecture easier to read. Names can contain multiple words, and unfamiliar names are inferred. There are no reserved keywords.
+Write `project.intent` in short English phrases. Use the forms below to group rules, reuse terms, and show flows. Use a full sentence when it makes a rule clearer. Names can contain multiple words, and unfamiliar names are inferred. There are no reserved keywords.
 
 | Form | Meaning |
 | --- | --- |

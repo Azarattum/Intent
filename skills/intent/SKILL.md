@@ -5,7 +5,18 @@ description: Design and maintain systems with a concise, declarative project.int
 
 Intent is a human-readable description of the system you want. Keep it in root `project.intent` beside the code. Repeated prompts against current code scatter decisions across chats and diffs. Editing Intent keeps them in view.
 
-Write short, plain English. Use Intent syntax where it reads better. Follow the user's emphasis and priorities as they evolve. Keep the behavior, tradeoffs, and constraints they care about. Skip routine implementation details, exhaustive inventories, and filler.
+Write plain English phrases, usually fragments. Define a recurring term once and reuse its exact wording. Group related rules in braces, attach exceptions as nested bullets, and use arrows for flows. Use sentences when they make a rule clearer.
+
+```intent
+pickup code - trimmed, uppercase order label
+pickup board {
+  check in: add order by pickup code
+    - blank input: reject blank pickup code
+  check in -> waiting -> collected
+}
+```
+
+Follow the user's emphasis as it evolves. Keep the behavior, tradeoffs, and constraints they care about. Skip routine implementation details, exhaustive inventories, and filler.
 
 **Intent → code.** Update desired behavior from the request. Check for conflicts and discuss consequential ambiguity. Implement and verify against Intent.
 
