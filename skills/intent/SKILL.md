@@ -1,9 +1,11 @@
 ---
 name: intent
-description: Maintain project.intent alongside code in Intent projects.
+description: Design and maintain systems with a declarative project.intent.
 ---
 
-Repeated commands against current code scatter design decisions across prompts and diffs. Keep desired behavior, architecture, and constraints in root `project.intent` to reason about changes without reconstructing prior decisions.
+Intent is a declarative notation for desired system behavior, architecture, and constraints. Keep the spec in root `project.intent` alongside code.
+
+Repeated prompts to change current code scatter design decisions across prompts and diffs. Edit the spec to reason about the whole design without reconstructing those decisions.
 
 Intent → code: Translate requests into desired behavior in phrase-and-flow prose. Lint for contradictions, omissions, and needless commitments. Discuss consequential ambiguity before implementing. Derive acceptance checks from intent and verify against code.
 
